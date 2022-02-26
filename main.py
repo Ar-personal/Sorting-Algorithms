@@ -7,8 +7,9 @@ import random
 # Importing colors from colors.py that we made earlier
 from colours import *
 
-
 from algorithms.insertionsort import insertionSort
+from algorithms.selectionsort import selectionSort
+from algorithms.shellsort import shellSort
 
 # Creating a basic window
 window = Tk()
@@ -18,7 +19,7 @@ window.config(bg=BLACK)
 
 algorithm_name = StringVar()
 # algo_list is to select which algorithm we want to use to sort
-algo_list = ['Bubble Sort', 'Merge Sort', 'Insertion Sort']
+algo_list = ['Bubble Sort', 'Merge Sort', 'Insertion Sort', 'Selection Sort', 'Shell Sort']
 
 speed_name = StringVar()
 # speed_list is for selecting sorting speed
@@ -47,6 +48,7 @@ def drawData(data, colorArray):
 
     window.update_idletasks()
     window.update()
+
 
 # This function will generate array with random values every time we hit the generate button
 def generate():
@@ -77,6 +79,12 @@ def sort():
     if algo_menu.get() == 'Insertion Sort':
         insertionSort(data, drawData)
 
+    elif algo_menu.get() == 'Selection Sort':
+        insertionSort(data, drawData)
+
+    elif algo_menu.get() == 'Shell Sort':
+        shellSort(data, drawData)
+
     # elif algo_menu.get() == 'Merge Sort':
     #     merge_sort(data, 0, len(data) - 1, drawData, timeTick)
 
@@ -87,14 +95,14 @@ UI_frame = Frame(window, width=900, height=300, bg=BLACK)
 UI_frame.grid(row=0, column=0, padx=10, pady=5)
 
 # dropdown to select sorting algorithm
-l1 = Label(UI_frame, text="Algorithm: ", fg=WHITE, bg = BLACK)
+l1 = Label(UI_frame, text="Algorithm: ", fg=WHITE, bg=BLACK)
 l1.grid(row=0, column=0, padx=10, pady=5, sticky=W)
 algo_menu = ttk.Combobox(UI_frame, textvariable=algorithm_name, values=algo_list)
 algo_menu.grid(row=0, column=1, padx=5, pady=5)
 algo_menu.current(0)
 
 # dropdown to select sorting speed
-l2 = Label(UI_frame, text="Sorting Speed: ", fg=WHITE, bg = BLACK)
+l2 = Label(UI_frame, text="Sorting Speed: ", fg=WHITE, bg=BLACK)
 l2.grid(row=1, column=0, padx=10, pady=5, sticky=W)
 speed_menu = ttk.Combobox(UI_frame, textvariable=speed_name, values=speed_list)
 speed_menu.grid(row=1, column=1, padx=5, pady=5)
